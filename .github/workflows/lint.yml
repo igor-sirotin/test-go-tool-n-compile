@@ -1,0 +1,17 @@
+name: Test
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Go environment
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.0'
+    - name: Install go dependencies
+      run: make install-deps
+    - name: Test
+      run: go test ./...
